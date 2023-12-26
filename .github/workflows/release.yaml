@@ -13,6 +13,11 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       
+      - name: Dump job github var
+        env:
+          GITHUB_VAR: ${{ toJson(github) }}
+        run: echo "$GITHUB_VAR"
+
       - name: Exit if not on main branch
         if: endsWith(github.ref, 'main') == false
         run: exit -1
